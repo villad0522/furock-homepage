@@ -1,0 +1,27 @@
+.text-cursor-right {
+  animation: flash-right 1s linear infinite;
+}
+@keyframes flash-right {
+  0%,
+  50% {
+    border-right: solid 1px rgba(0, 0, 0, 1);
+  }
+  51%,
+  100% {
+    border-right: none;
+  }
+}
+
+.text-cursor-left {
+  animation: flash-left 1s linear infinite;
+}
+@keyframes flash-left {
+  0%,
+  50% {
+    border-left: solid 1px rgba(0, 0, 0, 1);
+  }
+  51%,
+  100% {
+    border-left: none;
+  }
+}

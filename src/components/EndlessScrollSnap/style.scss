@@ -1,0 +1,10 @@
+
+.infinite-scroll-loop{
+  height: 100vh;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+.infinite-scroll-loop::-webkit-scrollbar {
+  display: none;
+}
