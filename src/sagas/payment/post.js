@@ -18,7 +18,7 @@ export default function* post() {
     }
     try {
         const res = yield axios.post(
-            'https://wvdkbseaqd.execute-api.ap-northeast-1.amazonaws.com/production/payment',
+            'https://epn63s2g5a.execute-api.ap-northeast-1.amazonaws.com/production/payment',
             {
                 paymentIntentId: paymentIntentId ? paymentIntentId : null,
                 cartItems,

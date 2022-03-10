@@ -14,7 +14,7 @@ export default function* getJsonItems({ payload: { fileName } }) {
         version = "production";
     }
     //
-    let url = 'https://wvdkbseaqd.execute-api.ap-northeast-1.amazonaws.com/production/s3/ayasugi-json/'
+    let url = 'https://epn63s2g5a.execute-api.ap-northeast-1.amazonaws.com/production/s3/ayasugi-json/'
         + version + '/' + fileName;
     if (oneTimeId) {
         url += '?oneTimeId=' + oneTimeId;
