@@ -44,7 +44,7 @@ export default function SubmitButton({ disabled }) {
             return;
         }
         const url = window.location.protocol + "//" + window.location.host + window.location.pathname + "#/shop/complete";
-        await dispatch(actions?.loading?.setLoading(true));
+        await dispatch(actions?.loading?.start("決済"));
         const { error } = await stripe.confirmPayment({
             elements,
             shipping: {
@@ -70,7 +70,7 @@ export default function SubmitButton({ disabled }) {
         else {
             await dispatch(actions?.message?.set('error', 'An unexpected error occured.', 'top', 'center'));
         }
-        await dispatch(actions?.loading?.setLoading(false));
+        await dispatch(actions?.loading?.end("決済"));
     };
 
     return (
