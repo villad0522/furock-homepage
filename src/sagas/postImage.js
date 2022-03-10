@@ -11,7 +11,7 @@ export default function* postImage({ payload: { imageId, file } }) {
     try {
         //###########################################################################
         const res = yield axios.post(
-            'https://epn63s2g5a.execute-api.ap-northeast-1.amazonaws.com/production/s3/ayasugi-image/'
+            'https://epn63s2g5a.execute-api.ap-northeast-1.amazonaws.com/production/s3/rentalserver-image/'
             + imageId + '?public=true&oneTimeId=' + oneTimeId,
             file,
             {
