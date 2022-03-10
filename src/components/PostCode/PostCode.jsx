@@ -61,7 +61,7 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
             >
                 <Character background="none">〒</Character>
                 <Character
-                    cursorLeft={(value.length === 0) ? true : false}
+                    cursorLeft={(value?.length === 0) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
@@ -69,7 +69,7 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
                     {value?.charAt(0)}
                 </Character>
                 <Character
-                    cursorLeft={(value.length === 1) ? true : false}
+                    cursorLeft={(value?.length === 1) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
@@ -77,7 +77,7 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
                     {value?.charAt(1)}
                 </Character>
                 <Character
-                    cursorLeft={(value.length === 2) ? true : false}
+                    cursorLeft={(value?.length === 2) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
@@ -86,7 +86,7 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
                 </Character>
                 <Character background="none">-</Character>
                 <Character
-                    cursorLeft={(value.length === 3) ? true : false}
+                    cursorLeft={(value?.length === 3) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
@@ -94,7 +94,7 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
                     {value?.charAt(3)}
                 </Character>
                 <Character
-                    cursorLeft={(value.length === 4) ? true : false}
+                    cursorLeft={(value?.length === 4) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
@@ -102,7 +102,7 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
                     {value?.charAt(4)}
                 </Character>
                 <Character
-                    cursorLeft={(value.length === 5) ? true : false}
+                    cursorLeft={(value?.length === 5) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
@@ -110,8 +110,8 @@ export default function PostCode({ value, onChange, sx, onFocus, helperText, err
                     {value?.charAt(5)}
                 </Character>
                 <Character
-                    cursorLeft={(value.length === 6) ? true : false}
-                    cursorRight={(value.length === 7) ? true : false}
+                    cursorLeft={(value?.length === 6) ? true : false}
+                    cursorRight={(value?.length === 7) ? true : false}
                     focus={focus}
                     hover={hover}
                     error={error}
