@@ -10,7 +10,6 @@ import EndlessScrollSnap from '../components/EndlessScrollSnap/EndlessScrollSnap
 import actions from '../actions';
 
 export default function Gallery({ fileName }) {
-
     const dispatch = useDispatch();
     const files = useSelector(state => state?.json?.files);
     const theme = useTheme();
