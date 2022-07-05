@@ -63,7 +63,7 @@ const GalleryTop = ({ item, scroll, }) => {
                     to={'/shop'}
                 >
                     <Typography variant="h5"   >
-                        参加申込
+                        お取り寄せ
                     </Typography>
                 </Button>
             </Box>

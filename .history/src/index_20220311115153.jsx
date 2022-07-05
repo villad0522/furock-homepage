@@ -25,7 +25,7 @@ sagaMiddleware.run(rootSaga);
 
 const theme = createTheme({
   typography: {
-    fontFamily: "'Shippori Antique B1', serif",
+    fontFamily: "'Shippori Mincho B1', serif",
   }
 });
 

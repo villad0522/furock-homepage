@@ -41,9 +41,9 @@ export default function Gallery({ fileName }) {
     if (!categories["一般設定"]) {
         return null;
     }
-    let pageSize = 2;
+    let pageSize = 1;
     if (categories[category]?.length > 0) {
-        pageSize += categories[category]?.length;
+        pageSize = 1 + categories[category]?.length;
     }
     return (
         <>
@@ -61,8 +61,8 @@ export default function Gallery({ fileName }) {
                         index={index + 1}
                     />
                 )}
-                <Products fileName={fileName} />
             </ScrollSnap>
+            <Products fileName={fileName} />
         </>
     );
 }

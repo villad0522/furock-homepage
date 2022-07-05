@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import GalleryTop from './GalleryTop';
 import GallerySubs from './GallerySubs';
 import Products from './Products';
-import ScrollSnap from '../components/ScrollSnap/ScrollSnap';
+import EndlessScrollSnap from '../components/EndlessScrollSnap/EndlessScrollSnap';
 import actions from '../actions';
 
 export default function Gallery({ fileName }) {
@@ -41,13 +41,13 @@ export default function Gallery({ fileName }) {
     if (!categories["一般設定"]) {
         return null;
     }
-    let pageSize = 2;
+    let pageSize = 1;
     if (categories[category]?.length > 0) {
-        pageSize += categories[category]?.length;
+        pageSize = 1 + categories[category]?.length;
     }
     return (
         <>
-            <ScrollSnap
+            <EndlessScrollSnap
                 childrenNum={pageSize}
                 onAnimationStart={(nowPage, nextPage, isDown) => dispatch(actions?.animation?.set(nowPage, nextPage, isDown))}
             >
@@ -61,8 +61,8 @@ export default function Gallery({ fileName }) {
                         index={index + 1}
                     />
                 )}
-                <Products fileName={fileName} />
-            </ScrollSnap>
+            </EndlessScrollSnap>
+            <Products />
         </>
     );
 }
