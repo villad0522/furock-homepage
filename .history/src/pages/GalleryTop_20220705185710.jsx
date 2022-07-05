@@ -57,7 +57,7 @@ const GalleryTop = ({ item, scroll, }) => {
                     variant="h5"
                     sx={{
                         opacity: 1 - Math.abs(scroll) * 3,
-                        whiteSpace: 'pre-wrap',
+                        whiteSpace: 'pre-wrap'
                     }}
                 >
                     {item.subtitle}

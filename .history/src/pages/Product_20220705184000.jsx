@@ -91,11 +91,12 @@ export default function Product({ fileName }) {
                             }}
                         />
                         <Box p={1} />
-                        <Typography
-                            variant="h4"
-                            sx={{ whiteSpace: 'pre-wrap' }}
-                        >
+                        <Typography variant="h4">
                             {item.title}
+                        </Typography>
+                        <Box p={1} />
+                        <Typography variant="h6">
+                            {item.overview}
                         </Typography>
                         <Box p={1} />
                         <Box sx={{

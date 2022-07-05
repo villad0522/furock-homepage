@@ -145,7 +145,6 @@ const GallerySubs = ({ item, index, }) => {
                     >
                         <animated.span style={{
                             ...titleStyles,
-                            whiteSpace: 'pre-wrap',
                             padding: '0 10px 0 10px',
                             background:
                                 (item.title_bgColor ?
@@ -159,7 +158,6 @@ const GallerySubs = ({ item, index, }) => {
                         <br />
                         <animated.span style={{
                             ...underlineStyles,
-                            whiteSpace: 'pre-wrap',
                             padding: '0 30px 0 30px',
                             borderTop: '3px solid',
                             color: 'rgba(255,255,255,0)',
