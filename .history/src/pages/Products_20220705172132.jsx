@@ -14,6 +14,17 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 const ItemCard = ({ item, }) => {
     const theme = useTheme();
     const isPhone = useMediaQuery(theme.breakpoints.down('sm'));
+    const optionPrice = React.useMemo(() => {
+        for (let i = 0; i < 6; i++) {
+            if (item['optionA_' + i + '_price'] > 0) {
+                return true;
+            }
+            else if (item['optionB_' + i + '_price'] > 0) {
+                return true;
+            }
+        }
+        return false;
+    }, [item]);
     return (
         <Grid item lg={3} md={4} xs={6}>
             <Card sx={{ height: '100%', borderRadius: '6px' }}>

@@ -24,7 +24,7 @@ export default function* getJsonItems({ payload: { fileName } }) {
             url,
             {
                 params: {
-                    timestamp: new Date().getTime(),    //キャッシュ対策
+                    timestamp: new Date().getTime(),
                 }
             }
         );

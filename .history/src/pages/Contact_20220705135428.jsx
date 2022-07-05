@@ -4,7 +4,6 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import AppBar from '../components/AppBar';
-import Typography from '@mui/material/Typography';
 
 export default function Join({ fileName }) {
     const files = useSelector(state => state?.json?.files);
@@ -16,33 +15,6 @@ export default function Join({ fileName }) {
     }, [files, fileName]);
     if (!item) {
         return null;
-    }
-    if (!item.recruit_flag) {
-        return (
-            <Box sx={{ background: '#333', minHeight: '100vh', height: 'max-content' }}>
-                <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
-                    <Paper>
-                        <AppBar backPath="/products" />
-                        <Container maxWidth="md">
-                            <img
-                                alt=''
-                                src={item.teamLogo}
-                                style={{
-                                    width: '150px',
-                                    padding: '30px',
-                                }}
-                            />
-                            <Box p={1} />
-                            <Typography>
-                                {item.recruit_stop_text}
-                            </Typography>
-                            <Box p={6} />
-                        </Container>
-                    </Paper>
-                    <Box p={6} />
-                </Container>
-            </Box>
-        );
     }
     return (
         <Box sx={{ background: '#333', minHeight: '100vh', height: 'max-content' }}>

@@ -24,7 +24,8 @@ export default function* getJsonItems({ payload: { fileName } }) {
             url,
             {
                 params: {
-                    timestamp: new Date().getTime(),    //キャッシュ対策
+                    // ここにクエリパラメータを指定する
+                    ID: 12345
                 }
             }
         );

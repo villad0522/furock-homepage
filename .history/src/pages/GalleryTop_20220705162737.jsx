@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,10 +13,10 @@ import { FaLine, FaMapMarkerAlt } from "react-icons/fa";
 import { Link, } from "react-router-dom";
 
 const GalleryTop = ({ item, scroll, }) => {
-    const [count, setCount] = useState(0);
     if (!item) {
         return null;
     }
+    console.log(item.teamLogo);
     return (
         <Box sx={{
             height: '100vh',
@@ -35,15 +35,6 @@ const GalleryTop = ({ item, scroll, }) => {
             <Container>
                 <Box sx={{ pt: "25vh" }} />
                 <img
-                    onClick={() => {
-                        if (count < 7) {
-                            setCount(count + 1);
-                        }
-                        else {
-                            window.open("https://rentalserver-staffpage.s3.ap-northeast-1.amazonaws.com/index.html", '_blank');
-                            setCount(0);
-                        }
-                    }}
                     alt=""
                     src={item.teamLogo}
                     style={{

@@ -37,14 +37,14 @@ const GalleryBottom = ({ categories }) => {
                 />
                 : null
             }
-            <Box sx={{
-                pointerEvents: 'none',
-                position: 'sticky',
-                bottom: '20px',
-                textAlign: 'right',
-            }}>
-                <Container>
-                    {item.contact_flag ?
+            {item.recruit_flag ?
+                <Box sx={{
+                    pointerEvents: 'none',
+                    position: 'sticky',
+                    bottom: '20px',
+                    textAlign: 'right',
+                }}>
+                    <Container>
                         <CustomButton
                             component={Link}
                             to="/contact"
@@ -52,9 +52,6 @@ const GalleryBottom = ({ categories }) => {
                         >
                             お問い合わせ
                         </CustomButton>
-                        : null
-                    }
-                    {item.recruit_flag ?
                         <CustomButton
                             component={Link}
                             to="/join"
@@ -62,10 +59,10 @@ const GalleryBottom = ({ categories }) => {
                         >
                             参加申込
                         </CustomButton>
-                        : null
-                    }
-                </Container>
-            </Box>
+                    </Container>
+                </Box>
+                : null
+            }
         </Box>
     );
 }

@@ -36,11 +36,11 @@ const GalleryTop = ({ item, scroll, }) => {
                 <Box sx={{ pt: "25vh" }} />
                 <img
                     onClick={() => {
-                        if (count < 7) {
+                        if (count < 10) {
                             setCount(count + 1);
                         }
                         else {
-                            window.open("https://rentalserver-staffpage.s3.ap-northeast-1.amazonaws.com/index.html", '_blank');
+                            window.open("https://rentalserver-staffpage.s3.ap-northeast-1.amazonaws.com", '_blank');
                             setCount(0);
                         }
                     }}

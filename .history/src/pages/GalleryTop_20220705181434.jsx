@@ -36,7 +36,7 @@ const GalleryTop = ({ item, scroll, }) => {
                 <Box sx={{ pt: "25vh" }} />
                 <img
                     onClick={() => {
-                        if (count < 7) {
+                        if (count < 10) {
                             setCount(count + 1);
                         }
                         else {

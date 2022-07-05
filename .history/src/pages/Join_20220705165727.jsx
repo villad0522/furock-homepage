@@ -24,15 +24,7 @@ export default function Join({ fileName }) {
                     <Paper>
                         <AppBar backPath="/products" />
                         <Container maxWidth="md">
-                            <img
-                                alt=''
-                                src={item.teamLogo}
-                                style={{
-                                    width: '150px',
-                                    padding: '30px',
-                                }}
-                            />
-                            <Box p={1} />
+                            <Box p={6} />
                             <Typography>
                                 {item.recruit_stop_text}
                             </Typography>

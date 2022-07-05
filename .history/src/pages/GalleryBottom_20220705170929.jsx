@@ -44,7 +44,7 @@ const GalleryBottom = ({ categories }) => {
                 textAlign: 'right',
             }}>
                 <Container>
-                    {item.contact_flag ?
+                    {item.recruit_flag ?
                         <CustomButton
                             component={Link}
                             to="/contact"
