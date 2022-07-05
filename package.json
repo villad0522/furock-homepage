@@ -21,6 +21,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.4.3",
+    "react-twitter-embed": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
