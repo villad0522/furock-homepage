@@ -27,7 +27,8 @@ export default function ScrollSnap({
     function preventDefault(e) {
         const nowY = outerRef.current.scrollTop;
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
-        if (nowY < (childrenNum - 1) * childHeight) {
+        const nowPage = Math.round(nowY / childHeight);
+        if (childrenNum - 1 > nowPage) {
             e.preventDefault();
             return;
         }
@@ -35,6 +36,19 @@ export default function ScrollSnap({
         if ((nowTime - changePageTime) < 1000) {
             e.preventDefault();
             return;
+        }
+        setChangePageTime(nowTime);
+        api.start({
+            from: {
+                y: nowY,
+            },
+            to: {
+                y: nowPage * childHeight,
+            },
+        });
+        if (onAnimationStart) {
+            onAnimationStart(nowPage % childrenNum, nowPage % childrenNum, false);
+            //親コンポーネントに情報を伝える
         }
     }
 

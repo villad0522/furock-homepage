@@ -27,7 +27,8 @@ export default function ScrollSnap({
     function preventDefault(e) {
         const nowY = outerRef.current.scrollTop;
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
-        if (nowY < (childrenNum - 1) * childHeight) {
+        const nowPage = Math.round(nowY / childHeight);
+        if (childrenNum - 1 > nowPage) {
             e.preventDefault();
             return;
         }
