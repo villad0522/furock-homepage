@@ -27,7 +27,7 @@ export default function ScrollSnap({
 
     function preventDefault(e) {
         const nowTime = Date.now();
-        if ((nowTime - changePageTime) < 700) {
+        if ((nowTime - changePageTime) < 1000) {
             e.preventDefault();
             return;
         }

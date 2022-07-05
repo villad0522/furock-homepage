@@ -27,7 +27,7 @@ export default function ScrollSnap({
 
     function preventDefault(e) {
         const nowTime = Date.now();
-        if ((nowTime - changePageTime) < 700) {
+        if ((nowTime - changePageTime) < 1000) {
             e.preventDefault();
             return;
         }
@@ -68,10 +68,6 @@ export default function ScrollSnap({
     });
 
     const changePage = React.useCallback(deltaPage => {
-        if (deltaPage === 0) {
-            setLastDelta(0);
-            return;
-        }
         const nowY = outerRef.current.scrollTop;
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
         const nowPage = Math.round(nowY / childHeight);

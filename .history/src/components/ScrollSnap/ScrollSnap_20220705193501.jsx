@@ -82,7 +82,7 @@ export default function ScrollSnap({
         else if (childrenNum - 1 <= nextPage) {
             navigate('/products');
         }
-        if (nextPage < 0 || childrenNum <= nextPage) {
+        if (nextPage < 0 || childrenNum - 1 <= nextPage) {
             setLastDelta(deltaPage);
             return;
         }
