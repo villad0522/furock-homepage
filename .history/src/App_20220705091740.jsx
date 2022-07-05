@@ -8,7 +8,7 @@ import MuiAlert from '@mui/material/Alert';
 
 import actions from './actions';
 import Gallery from './pages/Gallery';
-import Product from './pages/Product';
+import Item from './pages/Item';
 import Products from './pages/Products';
 
 const fileName = "web-contents.json";

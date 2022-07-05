@@ -26,7 +26,6 @@ function MyComponent({
     onAnimationStart,
 }) {
     const innerRef = React.useRef(null);
-    const outerRef = React.useRef(null);
     const [touchY, setTouchY] = React.useState(0);
     const [arrowPress, setArrowPress] = React.useState('');
     const [changePageTime, setChangePageTime] = React.useState(false);
@@ -34,7 +33,7 @@ function MyComponent({
     const [, api] = useSpring(() => ({
         y: 0,
         onChange: props => {
-            outerRef.current.scrollTop = props.value.y;
+            innerRef.current.scrollTop = props.value.y;
         },
         config: { frequency: 1 },
     }));
@@ -53,7 +52,7 @@ function MyComponent({
     }
 
     React.useEffect(() => {
-        const c = outerRef?.current;
+        const c = innerRef?.current;
         c?.addEventListener("wheel", preventDefault, { passive: false });
         c?.addEventListener("touchmove", preventDefault, { passive: false });
         document.addEventListener("keydown", arrowFunc, { passive: false });
@@ -65,19 +64,19 @@ function MyComponent({
     });
 
     const changePage = React.useCallback(deltaPage => {
+        const nowTime = Date.now();
+        if ((nowTime - changePageTime) < 1000) {
+            return;
+        }
+        setChangePageTime(nowTime);
         const childrenHeight = innerRef.current.offsetHeight;
-        const nowY = outerRef.current.scrollTop;
+        const nowY = innerRef.current.scrollTop;
         const childHeight = childrenHeight / childrenNum;   //１ページの高さ
         const nowPage = Math.round(nowY / childHeight);
         const nextPage = nowPage + deltaPage;
         if (nextPage < 0 || childrenNum <= nextPage) {
             return;
         }
-        const nowTime = Date.now();
-        if ((nowTime - changePageTime) < 1000) {
-            return;
-        }
-        setChangePageTime(nowTime);
         api.start({
             from: {
                 y: nowY,
@@ -133,7 +132,7 @@ function MyComponent({
     return (
         <animated.div
             className="infinite-scroll-loop"
-            ref={outerRef}
+            ref={innerRef}
             onWheel={handleWheel}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}

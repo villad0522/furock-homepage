@@ -65,6 +65,11 @@ function MyComponent({
     });
 
     const changePage = React.useCallback(deltaPage => {
+        const nowTime = Date.now();
+        if ((nowTime - changePageTime) < 1000) {
+            return;
+        }
+        setChangePageTime(nowTime);
         const childrenHeight = innerRef.current.offsetHeight;
         const nowY = outerRef.current.scrollTop;
         const childHeight = childrenHeight / childrenNum;   //１ページの高さ
@@ -73,11 +78,6 @@ function MyComponent({
         if (nextPage < 0 || childrenNum <= nextPage) {
             return;
         }
-        const nowTime = Date.now();
-        if ((nowTime - changePageTime) < 1000) {
-            return;
-        }
-        setChangePageTime(nowTime);
         api.start({
             from: {
                 y: nowY,

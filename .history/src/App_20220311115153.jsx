@@ -8,8 +8,10 @@ import MuiAlert from '@mui/material/Alert';
 
 import actions from './actions';
 import Gallery from './pages/Gallery';
-import Product from './pages/Product';
-import Products from './pages/Products';
+import Shop from './pages/Shop';
+import Cart from './pages/Cart';
+import Item from './pages/Item';
+import Complete from './pages/Complete';
 
 const fileName = "web-contents.json";
 
@@ -39,8 +41,10 @@ export default function App() {
         }} />
       }
       <Routes>
-        <Route path="/product/:uuid" element={<Product fileName={fileName} />} />
-        <Route path="/product" element={<Products fileName={fileName} />} />
+        <Route path="/shop/complete" element={<Complete />} />
+        <Route path="/shop/cart" element={<Cart />} />
+        <Route path="/shop/:uuid" element={<Item fileName={fileName} />} />
+        <Route path="/shop" element={<Shop fileName={fileName} />} />
         <Route path="*" element={<Gallery fileName={fileName} />} />
       </Routes>
       <Snackbar

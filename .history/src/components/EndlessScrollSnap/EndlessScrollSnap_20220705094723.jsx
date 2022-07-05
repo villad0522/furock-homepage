@@ -25,7 +25,6 @@ function MyComponent({
     childrenNum,
     onAnimationStart,
 }) {
-    const innerRef = React.useRef(null);
     const outerRef = React.useRef(null);
     const [touchY, setTouchY] = React.useState(0);
     const [arrowPress, setArrowPress] = React.useState('');
@@ -65,7 +64,12 @@ function MyComponent({
     });
 
     const changePage = React.useCallback(deltaPage => {
-        const childrenHeight = innerRef.current.offsetHeight;
+        const nowTime = Date.now();
+        if ((nowTime - changePageTime) < 1000) {
+            return;
+        }
+        setChangePageTime(nowTime);
+        const childrenHeight = outerRef.current.offsetHeight;
         const nowY = outerRef.current.scrollTop;
         const childHeight = childrenHeight / childrenNum;   //１ページの高さ
         const nowPage = Math.round(nowY / childHeight);
@@ -73,11 +77,6 @@ function MyComponent({
         if (nextPage < 0 || childrenNum <= nextPage) {
             return;
         }
-        const nowTime = Date.now();
-        if ((nowTime - changePageTime) < 1000) {
-            return;
-        }
-        setChangePageTime(nowTime);
         api.start({
             from: {
                 y: nowY,
@@ -139,9 +138,7 @@ function MyComponent({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
         >
-            <Box ref={innerRef}>
-                {children}
-            </Box>
+            {children}
         </animated.div>
     );
 }

@@ -9,12 +9,30 @@ export default function EndlessScrollSnap({
     childrenNum,
     onAnimationStart,
 }) {
+    if (childrenNum >= 3) {
+        return (
+            <MyComponent
+                childrenNum={childrenNum}
+                onAnimationStart={onAnimationStart}
+            >
+                {children}
+            </MyComponent>
+        );
+    }
     return (
         <MyComponent
-            childrenNum={childrenNum}
+            childrenNum={3}
             onAnimationStart={onAnimationStart}
         >
             {children}
+            {
+                Array(3 - childrenNum).fill().map((item, index) => (
+                    <Box
+                        key={index}
+                        sx={{ height: '100vh' }}
+                    />
+                ))
+            }
         </MyComponent>
     );
 };
@@ -64,23 +82,28 @@ function MyComponent({
         };
     });
 
-    const changePage = React.useCallback(deltaPage => {
+    React.useLayoutEffect(() => {
+        //初期化処理
         const childrenHeight = innerRef.current.offsetHeight;
-        const nowY = outerRef.current.scrollTop;
-        const childHeight = childrenHeight / childrenNum;   //１ページの高さ
-        const nowPage = Math.round(nowY / childHeight);
-        const nextPage = nowPage + deltaPage;
-        if (nextPage < 0 || childrenNum <= nextPage) {
-            return;
-        }
+        outerRef.current.scrollTop = childrenHeight;
+    }, []);
+
+    const changePage = React.useCallback(deltaPage => {
         const nowTime = Date.now();
         if ((nowTime - changePageTime) < 1000) {
             return;
         }
         setChangePageTime(nowTime);
+        const childrenHeight = innerRef.current.offsetHeight;
+        const nowY = outerRef.current.scrollTop;
+        const newNowY = childrenHeight + (nowY % childrenHeight);
+        outerRef.current.scrollTop = newNowY;
+        const childHeight = childrenHeight / childrenNum;   //１ページの高さ
+        const nowPage = Math.round(newNowY / childHeight);
+        const nextPage = nowPage + deltaPage;
         api.start({
             from: {
-                y: nowY,
+                y: newNowY,
             },
             to: {
                 y: nextPage * childHeight,
@@ -139,9 +162,11 @@ function MyComponent({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
         >
+            {children}
             <Box ref={innerRef}>
                 {children}
             </Box>
+            {children}
         </animated.div>
     );
 }

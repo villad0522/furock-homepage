@@ -12,10 +12,14 @@ import { takeEvery, } from 'redux-saga/effects';
 import actions from '../actions';
 import getJson from './json/get';
 import postImage from './postImage';
+import postPayment from './payment/post';
+import autoComplete from './shipping/autoComplete';
 
 export default function* rootSaga() {
     yield takeEvery(actions?.json?.get, getJson);
     yield takeEvery(actions?.imageUploader?.post, postImage);
+    yield takeEvery(actions?.payment?.post, postPayment);
+    yield takeEvery(actions?.shipping?.autoComplete, autoComplete);
     //const userId = localStorage.getItem('userId');
     //if (userId) {
     //yield call(loginCheck, oneTimeId);
