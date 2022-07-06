@@ -33,12 +33,12 @@ export default function ScrollSnap({
             return;
         }
         if (nowY < (childrenNum - 2) * childHeight) {
+            setMode('SNAP');
             const nowTime = Date.now();
             if ((nowTime - changePageTime) < 1000) {
                 return;
             }
             setChangePageTime(nowTime);
-            setMode('SNAP');
             api.start({
                 from: {
                     y: nowY,
