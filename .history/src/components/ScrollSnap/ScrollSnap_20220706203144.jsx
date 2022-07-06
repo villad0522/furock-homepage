@@ -28,11 +28,11 @@ export default function ScrollSnap({
     function preventDefault(e) {
         const nowY = outerRef.current.scrollTop;
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
-        if (mode === 'SNAP') {
+        if (nowY < (childrenNum - 1) * childHeight) {
             e.preventDefault();
-            return;
-        }
-        if (nowY < (childrenNum - 2) * childHeight) {
+            if (mode === 'SNAP') {
+                return;
+            }
             setMode('SNAP');
             const nowTime = Date.now();
             if ((nowTime - changePageTime) < 1000) {

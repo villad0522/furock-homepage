@@ -28,26 +28,24 @@ export default function ScrollSnap({
     function preventDefault(e) {
         const nowY = outerRef.current.scrollTop;
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
-        if (mode === 'SNAP') {
+        if (nowY < (childrenNum - 1) * childHeight) {
             e.preventDefault();
+            if (mode !== 'SNAP') {
+                setMode('SNAP');
+                const nowTime = Date.now();
+                setChangePageTime(nowTime);
+                api.start({
+                    from: {
+                        y: nowY,
+                    },
+                    to: {
+                        y: nowY - (nowY % childHeight),
+                    },
+                });
+            }
             return;
         }
-        if (nowY < (childrenNum - 2) * childHeight) {
-            setMode('SNAP');
-            const nowTime = Date.now();
-            if ((nowTime - changePageTime) < 1000) {
-                return;
-            }
-            setChangePageTime(nowTime);
-            api.start({
-                from: {
-                    y: nowY,
-                },
-                to: {
-                    y: nowY - (nowY % childHeight),
-                },
-            });
-        }
+        setMode('MANUAL');
     }
 
     function arrowFunc(e) {
@@ -82,6 +80,12 @@ export default function ScrollSnap({
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
         const nowPage = Math.round(nowY / childHeight);
         const nextPage = nowPage + deltaPage;
+        if (nextPage < childrenNum - 1) {
+            navigate('/');
+        }
+        else if (childrenNum - 1 <= nextPage) {
+            navigate('/products');
+        }
         if (nextPage < 0 || childrenNum <= nextPage) {
             return;
         }
@@ -90,13 +94,6 @@ export default function ScrollSnap({
             return;
         }
         setChangePageTime(nowTime);
-        if (nextPage < childrenNum - 1) {
-            navigate('/');
-        }
-        else if (childrenNum - 1 <= nextPage) {
-            setMode('MANUAL');
-            navigate('/products');
-        }
         api.start({
             from: {
                 y: nowY,

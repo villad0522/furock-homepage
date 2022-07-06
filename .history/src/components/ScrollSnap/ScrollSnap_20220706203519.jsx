@@ -32,7 +32,7 @@ export default function ScrollSnap({
             e.preventDefault();
             return;
         }
-        if (nowY < (childrenNum - 2) * childHeight) {
+        if (nowY < (childrenNum - 1) * childHeight) {
             setMode('SNAP');
             const nowTime = Date.now();
             if ((nowTime - changePageTime) < 1000) {

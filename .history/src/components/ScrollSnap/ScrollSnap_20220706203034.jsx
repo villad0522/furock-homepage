@@ -28,11 +28,11 @@ export default function ScrollSnap({
     function preventDefault(e) {
         const nowY = outerRef.current.scrollTop;
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
-        if (mode === 'SNAP') {
+        if (nowY < (childrenNum - 1) * childHeight) {
             e.preventDefault();
-            return;
-        }
-        if (nowY < (childrenNum - 2) * childHeight) {
+            if (mode === 'SNAP') {
+                return;
+            }
             setMode('SNAP');
             const nowTime = Date.now();
             if ((nowTime - changePageTime) < 1000) {
@@ -82,21 +82,23 @@ export default function ScrollSnap({
         const childHeight = outerRef.current.offsetHeight;   //１ページの高さ
         const nowPage = Math.round(nowY / childHeight);
         const nextPage = nowPage + deltaPage;
+        if (nextPage < childrenNum - 1) {
+            navigate('/');
+        }
+        else if (childrenNum - 1 <= nextPage) {
+            navigate('/products');
+        }
         if (nextPage < 0 || childrenNum <= nextPage) {
             return;
+        }
+        if () {
+            setMode('MANUAL');
         }
         const nowTime = Date.now();
         if ((nowTime - changePageTime) < 1000) {
             return;
         }
         setChangePageTime(nowTime);
-        if (nextPage < childrenNum - 1) {
-            navigate('/');
-        }
-        else if (childrenNum - 1 <= nextPage) {
-            setMode('MANUAL');
-            navigate('/products');
-        }
         api.start({
             from: {
                 y: nowY,
