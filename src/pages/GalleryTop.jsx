@@ -94,7 +94,7 @@ const GalleryTop = ({ item, scroll, }) => {
                 left: "4vw",
                 opacity: 1 - Math.abs(scroll) * 3,
             }}>
-                {item.mail ?
+                {item.peing ?
                     <IconButton
                         href={item.peing}
                         target="_blank"
