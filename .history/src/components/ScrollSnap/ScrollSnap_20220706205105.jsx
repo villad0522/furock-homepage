@@ -32,7 +32,7 @@ export default function ScrollSnap({
             e.preventDefault();
             return;
         }
-        if (nowY < (childrenNum - 1) * childHeight) {
+        if (nowY < (childrenNum - 2) * childHeight) {
             const nowTime = Date.now();
             if ((nowTime - changePageTime) < 1000) {
                 return;
@@ -51,7 +51,6 @@ export default function ScrollSnap({
             if (onAnimationStart) {
                 const nowPage = Math.round(nowY / childHeight);
                 const nextPage = Math.round(nextY / childHeight);
-                const deltaPage = nextPage - nowPage;
                 onAnimationStart(nowPage, nextPage, deltaPage === 1);
                 //親コンポーネントに情報を伝える
             }
